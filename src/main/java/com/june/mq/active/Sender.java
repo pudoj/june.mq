@@ -19,7 +19,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 public class Sender {
 	
 	private static final int SEND_NUMBER = 9;
-	public static final String brokerURL = "tcp://10.50.200.239:61616";	// ActiveMQConnectionFactory.DEFAULT_BROKER_BIND_URL
+	public static final String brokerURL = "tcp://10.50.200.38:61616";	// ActiveMQConnectionFactory.DEFAULT_BROKER_BIND_URL
 
 	public static void main(String[] args) throws JMSException {
 		// ConnectionFactory ：连接工厂，JMS 用它创建连接

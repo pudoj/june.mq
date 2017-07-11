@@ -27,7 +27,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 public class Receiver {
 	
 	// port:61616是activemq的默认的端口
-	public static final String brokerURL = "tcp://10.50.200.239:61616";
+	public static final String brokerURL = "tcp://10.50.200.38:61616";
 	
 	public static void main(String[] args) throws JMSException {
 		// ConnectionFactory ：连接工厂，JMS 用它创建连接
