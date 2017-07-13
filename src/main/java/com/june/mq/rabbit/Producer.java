@@ -5,16 +5,18 @@
  */
 package com.june.mq.rabbit;
 
+import static com.june.mq.rabbit.Consts.*;
+
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import static com.june.mq.rabbit.Consts.*;
 
 /**
  * Producer <br>
+ * 消息生成者
  * 
  * @author 王俊伟 wjw.happy.love@163.com
  * @blog https://www.github.com/junehappylove

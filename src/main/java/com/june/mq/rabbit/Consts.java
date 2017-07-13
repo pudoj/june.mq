@@ -20,6 +20,19 @@ public final class Consts {
 	public final static String password = "june";
 	public final static int port = 5672;
 	public final static String virtualHost = "/";
+
+	public static final String TASK_QUEUE_NAME = "task_queue";
+
+	public static final String EXCHANGE_NAME = "logs";
+
+	// 交换器名称
+	public static final String EXCHANGE_NAME_ROUTING = "direct_logs";
+	// 路由关键字
+	public static final String[] routingKeys = new String[] { "info", "warning", "error" };
+	public static final String[] routingKeys1 = new String[] { "info", "warning" };
+	public static final String[] routingKeys2 = new String[] { "error" };
+	//topic
+	public static final String EXCHANGE_NAME_TOPIC = "topic_logs";
 	
-	public static final String TASK_QUEUE_NAME="task_queue";
+	public static final String RPC_QUEUE_NAME = "rpc_queue";
 }

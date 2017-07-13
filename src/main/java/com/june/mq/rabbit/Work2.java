@@ -20,7 +20,8 @@ import com.rabbitmq.client.Envelope;
 
 /**
  * Work2 <br>
- * 
+ * 工作者2
+ *  
  * @author 王俊伟 wjw.happy.love@163.com
  * @blog https://www.github.com/junehappylove
  * @date 2017年7月11日 下午5:55:38
