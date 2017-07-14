@@ -6,6 +6,7 @@
 package com.june.mq.rabbit.spring;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Spittle <br>
@@ -17,6 +18,7 @@ import java.io.Serializable;
  */
 public class Spittle implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private Spitter spitter;
 	private String message;

@@ -23,14 +23,16 @@ public class ProducerMain {
 
 	/**
 	 * @param args
+	 * @throws InterruptedException 
 	 * @date 2017年7月13日 下午3:44:02
 	 * @writer junehappylove
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("amqp/amqp-producer.xml");
         AmqpTemplate template = (AmqpTemplate) context.getBean("rabbitTemplate");
         for (int i = 0; i < 20; i++) {
             System.out.println("Sending message #" + i);
+            Spitter spitter = new Spitter();
             Spittle spittle = new Spittle((long) i, null, "Hello world (" + i + ")", new Date());
             template.convertAndSend(spittle);
             Thread.sleep(5000);

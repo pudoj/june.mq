@@ -5,7 +5,7 @@
     <groupId>com.judy.june</groupId>
     <artifactId>june.mq</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>june.mq</name>
     <url>http://maven.apache.org</url>
@@ -69,14 +69,38 @@
     <build>
         <plugins>
             <!-- 编译 -->
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <!-- maven-compiler-plugin用来指定JDK版本和编码 -->  
+                <artifactId>maven-compiler-plugin</artifactId>  
+                <version>3.3</version>  
+                <configuration>  
+                    <!-- 编译器的版本设定为1.7,应该指的是jdk，默认是用的1.3，版本太老 -->  
+                    <source>1.8</source><!-- 源代码使用的开发版本 -->  
+                    <target>1.8</target><!-- 需要生成的目标class文件的编译版本 -->  
+                     <!-- 一般而言，target与source是保持一致的，但是，有时候为了让程序能在其他版本的jdk中运行(对于低版本目标jdk，源代码中需要没有使用低版本jdk中不支持的语法)，会存在target不同于source的情况 -->  
+                    <encoding>UTF-8</encoding>  
+                </configuration>  
+            </plugin> 
+            <plugin>  
+                <!-- maven-war-plugin进行打包 -->  
+                <artifactId>maven-war-plugin</artifactId>  
+                <version>3.1.0</version>  
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
+                    <!-- 包含空文件夹，指的是maven编译打包的时候会将空文件夹也编译打包进去，该参数2.4版本后才能使用 -->    
+                    <includeEmptyDirectories>true</includeEmptyDirectories>  
+                    <!-- war包的名字 -->  
+                    <warName>june.mq</warName>  
+                    <webResources>  
+                        <resource>  
+                            <!-- ${package.environment}就是profile中的配置文件路径 -->  
+                            <directory>${project.basedir}/src/main/webapp</directory>  
+                            <targetPath>WEB-INF/classes</targetPath>  
+                            <filtering>true</filtering>  
+                        </resource>  
+                    </webResources>  
+                </configuration>  
+            </plugin> 
         </plugins>
     </build>
 </project>

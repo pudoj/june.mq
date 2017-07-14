@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:util="http://www.springframework.org/schema/util"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-4.1.xsd
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+     http://www.springframework.org/schema/util
+     http://www.springframework.org/schema/util/spring-util-4.1.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+     http://www.springframework.org/schema/rabbit
+     http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+     
+    <context:property-placeholder location="classpath:rabbitmq.properties"/>
+    <util:properties id="appConfig" location="classpath:rabbitmq.properties"></util:properties>
+     
+    <rabbit:connection-factory id="connectionFactory" host="${rabbit.hosts}"
+                               port="${rabbit.port}" username="${rabbit.username}" password="${rabbit.password}" virtual-host="${rabbit.virtualHost}"
+                               channel-cache-size="50"/>
+    <rabbit:admin connection-factory="connectionFactory"/>
+    <!--定义消息队列-->
+    <rabbit:queue name="spittle.alert.queue.1" durable="true" auto-delete="false"/>
+    <rabbit:queue name="spittle.alert.queue.2" durable="true" auto-delete="false"/>
+    <rabbit:queue name="spittle.alert.queue.3" durable="true" auto-delete="false"/>
+    <!--绑定队列-->
+    <rabbit:fanout-exchange id="spittle.fanout" name="spittle.fanout" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="spittle.alert.queue.1"></rabbit:binding>
+            <rabbit:binding queue="spittle.alert.queue.2"></rabbit:binding>
+            <rabbit:binding queue="spittle.alert.queue.3"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:fanout-exchange>
+    
+</beans>
