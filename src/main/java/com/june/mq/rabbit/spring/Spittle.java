@@ -17,7 +17,7 @@ import java.util.Date;
  * @version 1.0.0
  */
 public class Spittle implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private Spitter spitter;

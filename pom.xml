@@ -28,6 +28,16 @@
             <artifactId>spring-rabbit</artifactId>
             <version>1.7.3.RELEASE</version>
         </dependency>
+<!--         <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>com.springsource.org.codehaus.jackson.mapper</artifactId>
+            <version>1.4.3</version>
+        </dependency> -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-core</artifactId>
