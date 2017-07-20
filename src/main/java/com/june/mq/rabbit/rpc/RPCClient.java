@@ -5,7 +5,12 @@
  */
 package com.june.mq.rabbit.rpc;
 
-import static com.june.mq.rabbit.Consts.*;
+import static com.june.mq.rabbit.Consts.RPC_QUEUE_NAME;
+import static com.june.mq.rabbit.Consts.host;
+import static com.june.mq.rabbit.Consts.password;
+import static com.june.mq.rabbit.Consts.port;
+import static com.june.mq.rabbit.Consts.username;
+import static com.june.mq.rabbit.Consts.virtualHost;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -25,11 +30,13 @@ import com.rabbitmq.client.QueueingConsumer;
  * @date 2017年7月13日 下午3:22:10
  * @version 1.0.0
  */
+@SuppressWarnings({ "deprecation" })
 public class RPCClient {
 	private Connection connection;
 	private Channel channel;
 	private String requestQueueName = RPC_QUEUE_NAME;
 	private String replyQueueName;
+	// private QueueingConsumer consumer;
 	private QueueingConsumer consumer;
 
 	public RPCClient() throws IOException, TimeoutException {
@@ -43,6 +50,7 @@ public class RPCClient {
 		channel = connection.createChannel();
 
 		replyQueueName = channel.queueDeclare().getQueue();
+		// consumer = new QueueingConsumer(channel);
 		consumer = new QueueingConsumer(channel);
 		channel.basicConsume(replyQueueName, true, consumer);
 	}
@@ -70,8 +78,6 @@ public class RPCClient {
 	/**
 	 * @param args
 	 * @throws Exception
-	 * @date 2017年7月13日 下午3:22:10
-	 * @writer junehappylove
 	 */
 	public static void main(String[] args) throws Exception {
 		RPCClient rpcClient = null;

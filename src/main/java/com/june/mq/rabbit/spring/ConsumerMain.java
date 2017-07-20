@@ -6,7 +6,6 @@
 package com.june.mq.rabbit.spring;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * ConsumerMain <br>
@@ -18,12 +17,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ConsumerMain {
 
+	static ApplicationContext context = null;
+
 	/**
 	 * @param args
 	 * @date 2017年7月13日 下午3:47:50
 	 * @writer junehappylove
 	 */
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("amqp/amqp-consumer.xml");
+		context  = new org.springframework.context.support.ClassPathXmlApplicationContext("amqp/amqp-consumer.xml");
 	}
 }

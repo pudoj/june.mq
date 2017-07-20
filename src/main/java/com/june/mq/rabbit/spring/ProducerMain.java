@@ -21,6 +21,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ProducerMain {
 
+	private static ApplicationContext context;
+
 	/**
 	 * @param args
 	 * @throws InterruptedException
@@ -28,16 +30,15 @@ public class ProducerMain {
 	 * @writer junehappylove
 	 */
 	public static void main(String[] args) throws InterruptedException {
-		ApplicationContext context = new ClassPathXmlApplicationContext("amqp/amqp-producer.xml");
+		context = new ClassPathXmlApplicationContext("amqp/amqp-producer.xml");
 		AmqpTemplate template = (AmqpTemplate) context.getBean("rabbitTemplate");
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 10; i++) {
 			System.out.println("Sending message #" + i);
 			Spittle spittle = new Spittle((long) i, null, "Hello world (" + i + ")", new Date());
 			template.convertAndSend(spittle);
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		}
 		System.out.println("Done!");
-
 	}
 
 }
