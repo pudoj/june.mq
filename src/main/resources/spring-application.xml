@@ -106,4 +106,11 @@
 			</list>
 		</property>
 	</bean>
+    
+    <!-- Spring 中使用rabbitmq -->
+    <!-- 说明： 
+            durable:是否持久化
+            exclusive: 仅创建者可以使用的私有队列，断开后自动删除
+            auto_delete: 当所有消费客户端连接断开后，是否自动删除队列 -->
+    <rabbit:queue id="test_queue_key" name="test_queue_key" durable="true" auto-delete="false" exclusive="false" />
 </beans>

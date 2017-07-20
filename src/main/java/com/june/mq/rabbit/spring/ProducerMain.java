@@ -11,6 +11,8 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.june.mq.rabbit.spring.direct.MQProducer;
+
 /**
  * ProducerMain <br>
  * 
@@ -32,13 +34,19 @@ public class ProducerMain {
 	public static void main(String[] args) throws InterruptedException {
 		context = new ClassPathXmlApplicationContext("amqp/amqp-producer.xml");
 		AmqpTemplate template = (AmqpTemplate) context.getBean("rabbitTemplate");
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 2; i++) {
 			System.out.println("Sending message #" + i);
 			Spittle spittle = new Spittle((long) i, null, "Hello world (" + i + ")", new Date());
 			template.convertAndSend(spittle);
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		}
 		System.out.println("Done!");
+		
+		System.out.println("Direct...");
+		MQProducer mqProducer = (MQProducer) context.getBean("mqProducer");
+		mqProducer.sendDataToQueue("spring.test.queueKey1", "Hello World spring.test.queueKey1");
+		mqProducer.sendDataToQueue("spring.test.queueKey2", "Hello World spring.test.queueKey2");
+		System.out.println("route done");
 	}
 
 }
