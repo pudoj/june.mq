@@ -46,7 +46,7 @@ public class ProducerMain {
 		MQProducer mqProducer = (MQProducer) context.getBean("mqProducer");
 		mqProducer.sendDataToQueue("spring.test.queueKey1", "Hello World spring.test.queueKey1");
 		mqProducer.sendDataToQueue("spring.test.queueKey2", "Hello World spring.test.queueKey2");
-		System.out.println("route done");
+		System.out.println("routing done");
 	}
 
 }
