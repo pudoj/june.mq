@@ -15,9 +15,12 @@ package com.june.mq.rabbit;
  */
 public final class Consts {
 	public final static String QUEUE_NAME = "rabbitmq_test";
-	public final static String host = "10.50.200.234";
-	public final static String username = "june";
-	public final static String password = "june";
+//	public final static String host = "10.50.200.234";
+//	public final static String username = "june";
+//	public final static String password = "june";
+	public final static String host = "10.50.200.12";
+	public final static String username = "guest";
+	public final static String password = "guest";
 	public final static int port = 5672;
 	public final static String virtualHost = "/";
 
