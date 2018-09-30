@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -46,7 +47,7 @@ public class ReceiveLogs1 {
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 
-		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+		channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);//direct、topic、headers 和fanout
 
 		// 产生一个随机的队列名称
 		String queueName = channel.queueDeclare().getQueue();
